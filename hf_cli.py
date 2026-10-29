@@ -32,10 +32,16 @@ import time
 import urllib.request
 from pathlib import Path
 
+import os
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")
+
+gh_default = r"C:\Program Files\GitHub CLI"
+if Path(gh_default).exists() and gh_default not in os.environ.get("PATH", ""):
+    os.environ["PATH"] = gh_default + os.pathsep + os.environ.get("PATH", "")
 
 import joblib
 import pandas as pd
